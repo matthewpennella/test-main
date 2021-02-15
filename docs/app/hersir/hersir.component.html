@@ -1,0 +1,8 @@
+<div *ngIf="Name.First !== undefined && Name.First !== ''" class="m-3 text-center">
+    {{Name.First}} {{Name.Middle}}-{{Name.Last}}
+</div>
+
+<div class="text-center m-2">
+    <input class="btn btn-primary" type="submit" value="Generate" (click)="generate()"/>
+</div>
+

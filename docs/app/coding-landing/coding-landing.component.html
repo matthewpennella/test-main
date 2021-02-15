@@ -1,0 +1,29 @@
+<div class="pl-3" (window:resize)="onResize($event)">
+    <div class="form-row mx-1">
+        <div class="align-items-center w-100">
+            <fieldset style="border: 4px solid #CCCCCC;">
+                <legend class="w-auto px-1" style="font-size: medium;"><b>Code Examples</b></legend>
+                <div>
+                    <table class="table table-bordered" bordered="true" style="font-weight: bold;margin-bottom: 0rem;">
+                        <thead class="thead-light {{Pages.length > PageItemsMax ? 'thead-slim' : 'thead-wide' }}">
+                            <tr>
+                                <th scope="col" class="col-50p px-1" (click)="sortDetails('Title')">Title</th>
+                                <th scope="col" class="col-50p px-1" (click)="sortDetails('Description')">Description</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <cdk-virtual-scroll-viewport [style.height]="tableHeightGridDisplay" itemSize="rowHeight" id="virtualScroll" minBufferPx="376" maxBufferPx="600"> 
+                        <table class="table table-hover table-bordered" bordered="true" id="mainTable" style="color: #FFFFFF;">
+                          <ng-container *cdkVirtualFor="let page of Pages">
+                            <tr routerLink='/CodeExamples/{{page.Link}}'>
+                              <td scope="col" class="col-50p p-1">{{page.Title}}</td>
+                              <td scope="col" class="col-50p p-1">{{page.Description}}</td>
+                            </tr>
+                          </ng-container>
+                        </table>
+                    </cdk-virtual-scroll-viewport>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

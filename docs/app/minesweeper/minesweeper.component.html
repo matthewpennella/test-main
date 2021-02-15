@@ -1,0 +1,104 @@
+<div (window:resize)="onResize($event)">
+    <div class="alert alert-secondary alert-dismissible fade show mt-1" role="alert">
+        <ul class="list-unstyled mb-0">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                Click to download the
+                    <a href="app/minesweeper/minesweeper.component.html" target="_self" download="minesweeper.component.html">HTML</a> and 
+                    <a href="app/minesweeper/minesweeper.component.ts" target="_self" download="minesweeper.component.ts">Typescript</a>
+                code for this page.
+            </div>
+        </ul>
+    </div>
+    <fieldset class="mb-1 mx-0 mt-0 p-0" style="border: 4px solid #CCCCCC;">
+        <legend class="w-auto">Game Settings</legend>
+        <!--<div class="form-row mb-1 px-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Difficulty" id="Easy" [(ngModel)]="Difficulty" value="Easy">
+                <label class="form-check-label" for="Application">Easy</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Difficulty" id="Medium" [(ngModel)]="Difficulty" value="Medium">
+                <label class="form-check-label" for="ForceOuts">Medium</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Difficulty" id="Hard" [(ngModel)]="ReportFilter" value="Hard">
+                <label class="form-check-label" for="Hard">Hard</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Difficulty" id="Custom" [(ngModel)]="Difficulty" value="Custom">
+                <label class="form-check-label" for="Custom">Custom</label>
+            </div>
+        </div>-->
+        <div class="form-row px-3 m-0">
+            <div class="form-group">
+                <label class="">Rows</label>
+                <input [(ngModel)]="TilesXInput" name="TilesX" maxlength="2" class="h-75">
+            </div>
+            <div class="form-group">
+                <label class="">Columns</label>
+                <input [(ngModel)]="TilesYInput" name="TilesY" maxlength="2" class="h-75">
+            </div>
+            <div class="form-group">
+                <label class="">Mines</label>
+                <input [(ngModel)]="MinesInput" name="Mines" maxlength="3" class="h-75">
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Generate" (click)="CreateGrid(TilesXInput, TilesYInput, MinesInput)"/>
+            </div>
+        </div>
+    </fieldset>
+    
+
+    <div id="minegrid" class="p-2 minegrid noSelect" ondragstart="return false;" ondrop="return false;" [style.height]="divHeight" [style.width]="divWidth">
+        <fieldset class='m-1 gridfield' style="border: 1px solid #CCCCCC;" *ngIf="MinesweeperGrid.length > 0" [style.height]="fieldHeight"  [style.width]="fieldWidth">
+            <ng-container *ngFor="let row of MinesweeperGrid">
+                <div class="form-row">
+                    <ng-container *ngFor="let cell of row">
+                        <div class="form-group m-0">
+                            <ng-container *ngIf="cell.Revealed === false && !GameWon">
+                                <ng-container *ngIf="cell.Flag === true">
+                                    <!--<input class="btn btn-secondary h-100 mx-1 life-cell" (click)="ClickTile(cell)" value="F" (contextmenu)="FlagCell(cell)" (contextmenu)="FlagCell(cell)"/>-->
+                                    <div class="input-group-text justify-content-center minesweeper-tile minesweeper-hidden d-inline-block" (contextmenu)="FlagCell(cell)"><a class="fa fa-flag minesweeper-icon"></a></div>
+                                </ng-container>
+                                <ng-container *ngIf="cell.Flag === false">
+                                    <!--<input class="btn btn-secondary h-100 mx-1 life-cell" (click)="ClickTile(cell)" (contextmenu)="FlagCell(cell)"/>-->
+                                    <div class="input-group-text justify-content-center minesweeper-tile minesweeper-hidden d-inline-block" (click)="ClickTile(cell)" (contextmenu)="FlagCell(cell)"><a class="fa minesweeper-icon"></a></div>
+                                </ng-container>  
+                            </ng-container>
+                            <ng-container *ngIf="cell.Revealed === true || GameWon">
+                                <ng-container *ngIf="cell.Bomb === true && MineClicked && cell === MineClicked">
+                                    <!--<input class="btn btn-danger h-100 mx-1 life-cell" (click)="ClickTile(cell)" disabled/>-->
+                                    <div class="input-group-text justify-content-center minesweeper-tile minesweeper-bomb-selected d-inline-block" (contextmenu)="NoRightClick()"><a class="fa fa-bomb minesweeper-icon"></a></div>
+                                </ng-container>
+                                <ng-container *ngIf="cell.Bomb === true && cell !== MineClicked && GameLost">
+                                    <!--<input class="btn btn-danger h-100 mx-1 life-cell" (click)="ClickTile(cell)" disabled/>-->
+                                    <div class="input-group-text justify-content-center minesweeper-tile minesweeper-revealed d-inline-block" (contextmenu)="NoRightClick()"><a class="fa fa-bomb minesweeper-icon"></a></div>
+                                </ng-container>
+                                <ng-container *ngIf="cell.Bomb === true && cell !== MineClicked && GameWon">
+                                    <!--<input class="btn btn-danger h-100 mx-1 life-cell" (click)="ClickTile(cell)" disabled/>-->
+                                    <div class="input-group-text justify-content-center minesweeper-tile minesweeper-hidden d-inline-block" (contextmenu)="NoRightClick()"><a class="fa fa-flag minesweeper-icon"></a></div>
+                                </ng-container>
+                                <ng-container *ngIf="cell.Bomb === false">
+                                    <ng-container *ngIf="cell.AdjacentBombs > 0">
+                                        <!--<input class="btn btn-primary h-100 mx-1 life-cell" value="{{cell.AdjacentBombs}}" [disabled]="GameLost || GameWon"/>-->
+                                        <div class="input-group-text justify-content-center minesweeper-tile minesweeper-revealed d-inline-block" (contextmenu)="NoRightClick()"><a class="fa num-{{cell.AdjacentBombs}}"><b>{{cell.AdjacentBombs}}</b></a></div>
+                                    </ng-container>
+                                    <ng-container *ngIf="cell.AdjacentBombs === 0">
+                                        <!--<input class="btn btn-primary h-100 mx-1 life-cell" (click)="ClickTile(cell)" [disabled]="GameLost || GameWon"/>-->
+                                        <div class="input-group-text justify-content-center minesweeper-tile minesweeper-revealed d-inline-block" (contextmenu)="NoRightClick()"><a class="fa minesweeper-icon"></a></div>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                            
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </fieldset>
+        
+    </div>
+    <div class="form-row">
+        <label *ngIf="MinesweeperGrid.length > 0 && GameLost" class="col-sm-4 text-center text-danger"> Game Over!</label>
+        <label *ngIf="MinesweeperGrid.length > 0 && GameWon" class="col-sm-4 text-center text-danger">You win!</label>
+    </div>
+</div>

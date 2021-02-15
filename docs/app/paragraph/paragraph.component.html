@@ -1,0 +1,35 @@
+<div>
+    <div class="alert alert-secondary alert-dismissible fade show mt-1" role="alert">
+        <ul class="list-unstyled mb-0">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                Click to download the
+                    <a href="app/paragraph/paragraph.component.html" target="_self" download="paragraph.component.html">HTML</a> and 
+                    <a href="app/paragraph/paragraph.component.ts" target="_self" download="paragraph.component.ts">Typescript</a>
+                code for this page.
+            </div>
+        </ul>
+    </div>
+
+    <div class="form-row">
+        <div class="p-3 w-100">
+            <div class="form-row">
+                <div class ="form-group col-sm-5">
+                    <label style="vertical-align: top;" class="mr-2">Text to Display: </label>
+                    <textarea [(ngModel)]="paragraph" rows="5" name="ParagraphText" class="mr-2 w-100"></textarea>
+                </div>
+                <div class="form-group col-sm-5">
+                    <div class="form-row">
+                        <label style="vertical-align: top;" class="mr-2">Characters per line: </label>
+                        <input style="vertical-align: top;" [(ngModel)]="maxLine">
+                    </div>
+                    <div class="form-row">
+                        <input class="btn btn-primary" type="submit" value="Generate" (click)="formatText()" [disabled]="paragraph === ''"/>
+                    </div>
+                </div>
+                
+            </div>
+            <div [innerHTML]="paragraphOutput" class="form-row paragraph-output"></div>
+            <br>
+        </div>
+    </div>
+</div>

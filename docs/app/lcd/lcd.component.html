@@ -1,0 +1,34 @@
+<div>
+    <div class="alert alert-secondary alert-dismissible fade show mt-1" role="alert">
+        <ul class="list-unstyled mb-0">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                Click to download the
+                    <a href="app/lcd/lcd.component.html" target="_self" download="lcd.component.html">HTML</a> and 
+                    <a href="app/lcd/lcd.component.ts" target="_self" download="lcd.component.ts">Typescript</a>
+                code for this page.
+            </div>
+        </ul>
+    </div>
+
+    <div class="form-row pl-2">
+        <label class="mr-2">Convert number to LCD format:</label>
+        <input [(ngModel)]="LCDNum" (ngModelChange)="formatLCD()" name="LCDInput" maxlength="12">
+    </div>
+    <div class="form-row lcd-display">
+        <ng-container *ngFor="let digit of LCDDisplay">
+            <div class="form-group col-sm-1 m-0 pl-3">
+                <div class="form-row">
+                    <ng-container *ngFor="let col of digit.display; index as i; last as isLast">
+                        <div class="form-group col-sm-1">
+                            <ng-container *ngFor="let row of col; index as j">
+                                <div class ="form-row">
+                                    {{digit.display[j][i]}}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+    </div> 
+</div>
