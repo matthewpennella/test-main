@@ -1,0 +1,61 @@
+.col-50p {
+    text-align: left;
+    min-width: 50%;
+    width: 50%;
+} 
+
+.table-hover tr:hover td {
+    background-color: #000000;
+}
+
+.table .thead-light th {
+    color: #000000;
+    background-color: #FFFFFF;
+    border-color: #454d55;
+}
+
+th,
+td {
+    padding:0.5px;
+    font-weight: bold;
+    font-size: smaller;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: small;
+    font-family:  Arial, sans-serif;
+}
+
+table {
+     table-layout: fixed;
+    margin: auto;
+    width: 100%;
+}
+
+thead {
+    display: table;
+    width: 99%;
+    width: calc(100% - 17px);
+}
+
+.thead-wide {
+    width: 100%;
+}
+
+.thead-slim {
+    width: 99%;
+    width: calc(100% - 17px);
+}
+
+tbody {
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+    display: block;
+    width: 100%;
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}

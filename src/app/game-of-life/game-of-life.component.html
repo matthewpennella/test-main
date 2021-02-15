@@ -1,0 +1,44 @@
+<div (window:resize)="onResize($event)">
+    <div class="alert alert-secondary alert-dismissible fade show mt-1" role="alert">
+        <ul class="list-unstyled mb-0">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                Click to download the
+                    <a href="app/game-of-life/game-of-life.component.html" target="_self" download="game-of-life.component.html">HTML</a> and 
+                    <a href="app/game-of-life/game-of-life.component.ts" target="_self" download="game-of-life.component.ts">Typescript</a>
+                code for this page.
+            </div>
+        </ul>
+    </div>
+    
+    <div id="lifegrid" class="pl-2 lifegrid">
+        <ng-container *ngFor="let row of LifeGrid">
+            <div class="form-row">
+                <ng-container *ngFor="let cell of row">
+                    <div class="form-group my-1">
+                        <input class="btn h-100 mx-1 life-cell {{cell.state === true ? 'btn-primary' : 'btn-secondary' }}" (click)="swapCell(cell)" type="submit" value=""/>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+       
+    </div>
+    <div id="buttons" class="form-row">
+        <div class="col-sm-4">
+            <div class="form-row" style="height: 20px">
+                <label class="pl-2">Generation #: {{GenNumber}}</label>
+            </div>
+            <div class="form-row mt-0">
+                <input class="btn btn-primary btn-sm mx-2" type="submit" value="<<" (click)="speedDown()" [disabled]="this.StepSpeeds.indexOf(this.StepSpeedMs) === 0"/>
+                <label class="pl-2 pt-1">Speed: {{StepSpeedMs}}ms/Generation</label>
+                <input class="btn btn-primary btn-sm mx-2" type="submit" value=">>" (click)="speedUp()" [disabled]="this.StepSpeeds.indexOf(this.StepSpeedMs) === this.StepSpeeds.length-1"/>
+            </div>
+        </div>
+        <div class="col-sm-4 text-center">
+
+            <input class="btn btn-primary" *ngIf="stopLife === true" type="submit" value="Play" (click)="continuousLifeSteps()"/>
+            <input class="btn btn-danger" *ngIf="stopLife === false" type="submit" value="Stop" (click)="stop()"/>
+            <input class="btn btn-primary mx-2" *ngIf="stopLife === true" type="submit" value="Next" (click)="takeNextLifeStep()"/>
+            <input class="btn btn-secondary mx-2" type="submit" value="Clear" (click)="clear()"/>
+        </div>
+    </div>
+</div>

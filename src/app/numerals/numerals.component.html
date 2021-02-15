@@ -1,0 +1,19 @@
+<div class="pl-2">
+    <div class="alert alert-secondary alert-dismissible fade show mt-1" role="alert">
+        <ul class="list-unstyled mb-0">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                Click to download the
+                    <a href="app/numerals/numerals.component.html" target="_self" download="numerals.component.html">HTML</a> and 
+                    <a href="app/numerals/numerals.component.ts" target="_self" download="numerals.component.ts">Typescript</a>
+                code for this page.
+            </div>
+        </ul>
+    </div>
+    
+    <div class="form-row">
+        <label class="mr-2">Convert number to Numeral:</label>
+        <input [(ngModel)]="numeralInput" (ngModelChange)="formatNumbertoNumerals()" name="NumeralsInput" maxlength="4">
+        <i class="fa fa-arrow-right mx-2"></i>
+        <div class="">{{numeralSolutionStr}}</div>
+    </div>
+</div>
