@@ -1,0 +1,21 @@
+<nb-layout>
+
+    <nb-layout-header fixed>
+    <!-- Insert header here -->
+    </nb-layout-header>
+  
+    <nb-layout-column style="background-color:#262626">
+  
+      <app-nav></app-nav>
+      <div style="background-color: #262626" [style.height]="screenHeight" (window:resize)="onResize($event)">
+        <fieldset class="db-background viewBox mb-0" [style.height]="fieldHeight" [style.width]="fieldWidth">
+          <router-outlet></router-outlet>
+        </fieldset>
+      </div>
+      <!--<app-footer class="bg-dark fixed-bottom py-1"></app-footer>-->
+      
+    </nb-layout-column>
+  
+  
+  </nb-layout>
+  

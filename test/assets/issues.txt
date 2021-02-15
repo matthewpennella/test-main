@@ -1,0 +1,21 @@
+add numeral to number conversion
+
+game of life should stop when stop is clicked
+
+paragraph code still sucks
+
+game of life buttons should not let user input text
+
+minesweeper - add checks so that mines not greater than number of spaces - 9, add min/max mines and tiles, add timer, add mine counter, add smiley
+
+buy out resources with gold? - merchants guild upgrade
+remove double click highlighting side nav items
+add html/ts download on sidebar
+add modals for intro/choices
+add a text log at the bottom of screen
+
+make it possible to toggle upgrades on/off
+collapse sidebar and make it modal on small screens
+
+re add locked tooltips, make sure names of stuff makes sense, make ResourceAdded a Requirements field just like Cost
+ModifyBuilding on unit will need to be a list of {Building: '', Resource: '', ResourceAmount: ''}

@@ -1,0 +1,70 @@
+.minegrid {
+    width: max-content;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.gridfield {
+    display: inline;
+}
+
+.fa {
+    //font-size: larger;
+}
+
+.input-group-text {
+    border-radius: 0%;
+}
+
+.minesweeper-icon, .minesweeper-icon:hover {
+    color: #000000;
+}
+.num-1, .num-1:hover {
+    color: blue;
+}
+.num-2, .num-2:hover {
+    color: darkgreen;
+}
+.num-3, .num-3:hover {
+    color: #BB0000;
+}
+.num-4, .num-4:hover {
+    color: rgb(60, 0, 85);
+}
+.num-5, .num-5:hover {
+    color: rgb(75, 40, 0);
+}
+.num-6, .num-6:hover {
+    color: teal;
+}
+.num-7, .num-7:hover {
+    color: black;
+}
+.num-8, .num-8:hover {
+    color: gray;
+}
+
+.fa:hover {
+    text-decoration: none;
+}
+
+.minesweeper-tile {
+    text-align: center;
+    width: 2.5em;
+    height: 2.5em;
+    cursor: default;
+}
+
+.minesweeper-bomb-selected {
+    background-color:#DD0000;
+}
+
+.minesweeper-hidden {
+    background-color: #6c757d;
+    box-shadow: inset -3px -3px black;
+}
+
+.minesweeper-revealed {
+    background-color: #6a6a6a;
+}
+
